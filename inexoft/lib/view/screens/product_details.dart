@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inexoft/controller/quantity_provider.dart';
+import 'package:inexoft/view/screens/purchase_page.dart';
 import 'package:inexoft/view/utils/colors.dart';
 import 'package:inexoft/view/utils/sizedbox.dart';
 import 'package:inexoft/view/widgets/quantity_input.dart';
@@ -27,6 +28,10 @@ class ProductDetails extends StatelessWidget {
         ) ??
         0.0;
     final totalPrice = quantityProvider.quantity * parsedPrice;
+    final discountprice = totalPrice / 10;
+    final afterDiscount = totalPrice - discountprice;
+    final gstprice = afterDiscount / 5;
+    final netTotal = afterDiscount + gstprice;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -42,7 +47,7 @@ class ProductDetails extends StatelessWidget {
                 onPressed: () => Navigator.pop(context),
               ),
               const SizedBox(
-                height: 15,
+                height: 35,
               ),
               Expanded(
                 child: Container(
@@ -123,7 +128,21 @@ class ProductDetails extends StatelessWidget {
                       style: const ButtonStyle(
                           backgroundColor: MaterialStatePropertyAll(
                               Color.fromARGB(255, 7, 0, 132))),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return PurchasePage(
+                            nettotal: netTotal.toString(),
+                            discounprice: discountprice.toString(),
+                            productImage: productImage,
+                            productprice:
+                                ' ${NumberFormat("#,##0.00", "en_US").format(totalPrice)}',
+                            productquantity:
+                                quantityProvider.quantity.toString(),
+                            productName: productName,
+                          );
+                        }));
+                      },
                       child: const Text(
                         'Buy Now',
                         style: TextStyle(color: kWhite),
