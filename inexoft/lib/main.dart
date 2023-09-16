@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:inexoft/controller/purchase_details.dart';
 import 'package:inexoft/controller/quantity_provider.dart';
+import 'package:inexoft/model/hive.db.dart';
 import 'package:inexoft/view/screens/bottomnav.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(PurchaseModelAdapter());
   runApp(const MyApp());
 }
 
@@ -15,7 +22,7 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(
             create: (context) => QuantityProvider(),
-          )
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

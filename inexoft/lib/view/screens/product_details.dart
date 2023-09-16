@@ -29,6 +29,7 @@ class ProductDetails extends StatelessWidget {
         0.0;
     final totalPrice = quantityProvider.quantity * parsedPrice;
     final discountprice = totalPrice / 10;
+
     final afterDiscount = totalPrice - discountprice;
     final gstprice = afterDiscount / 5;
     final netTotal = afterDiscount + gstprice;
@@ -79,10 +80,10 @@ class ProductDetails extends StatelessWidget {
                               ),
                               child: Text(
                                 productName,
-                                style: GoogleFonts.acme(),
+                                style: GoogleFonts.acme(fontSize: 20),
                               ),
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 20),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

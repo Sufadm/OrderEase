@@ -10,61 +10,62 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 106, 56, 255),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 15),
-              Expanded(
-                child: ListView.separated(
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 10),
-                  itemCount: productImages.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return ProductDetails(
-                          productImage: productImages[index],
-                          productName: productName[index],
-                          productPrice: productPrice[index],
-                        );
-                      })),
-                      child: Card(
-                        color: kWhite,
-                        child: ListTile(
-                          leading: CircleAvatar(
-                            radius: 30,
-                            backgroundImage: NetworkImage(productImages[index]),
-                          ),
-                          title: Text(
-                            productName[index],
-                            style:
-                                GoogleFonts.acme(fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                productPrice[index],
-                                style: GoogleFonts.lato(),
-                              )
-                            ],
-                          ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(150.0), // Rounded top-left corner
+              ),
+              color: Color.fromARGB(255, 24, 1, 128),
+            ),
+            height: 170,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.separated(
+                separatorBuilder: (context, index) => const SizedBox(height: 5),
+                itemCount: productImages.length,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return ProductDetails(
+                        productImage: productImages[index],
+                        productName: productName[index],
+                        productPrice: productPrice[index],
+                      );
+                    })),
+                    child: Card(
+                      color: kWhite,
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          radius: 30,
+                          backgroundImage: NetworkImage(productImages[index]),
+                        ),
+                        title: Text(
+                          productName[index],
+                          style: GoogleFonts.acme(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              productPrice[index],
+                              style: GoogleFonts.lato(),
+                            )
+                          ],
                         ),
                       ),
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
