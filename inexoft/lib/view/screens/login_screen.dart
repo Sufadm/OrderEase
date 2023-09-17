@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:inexoft/view/screens/bottomnav.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:inexoft/controller/login_shared_preferences.dart';
+import 'package:inexoft/controller/password_visibility_provider.dart';
 import 'package:inexoft/view/utils/colors.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -19,11 +21,14 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    userlogged();
+    Auth.userlogged(context);
   }
 
   @override
   Widget build(BuildContext context) {
+    final passwordVisibilityProvider =
+        Provider.of<PasswordVisibilityProvider>(context);
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -31,47 +36,42 @@ class _LoginPageState extends State<LoginPage> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color.fromARGB(255, 138, 146, 156),
-              Color(0xFF61A4F1),
-              Color(0xFF478DE0),
-              Color(0xFF398AE5),
+              Color.fromARGB(255, 98, 19, 144),
+              Color.fromARGB(255, 48, 118, 199),
+              Color.fromARGB(255, 64, 13, 120),
+              Color.fromARGB(255, 73, 53, 153),
             ],
             stops: [0.1, 0.4, 0.7, 0.9],
           ),
         ),
         child: Form(
           key: formkey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: [
               const SizedBox(height: 80.0),
-              const Padding(
-                padding: EdgeInsets.all(20.0),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Login',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 10.0),
-                    Text(
-                      'Welcome back',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.0,
-                      ),
-                    ),
+                    Text('Login',
+                        style: GoogleFonts.akshar(
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                            color: kWhite)),
+                    const SizedBox(height: 10.0),
+                    Text('Welcome Inexoft Technologies',
+                        style: GoogleFonts.outfit(
+                            color: Colors.white54,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30)),
                   ],
                 ),
               ),
               const SizedBox(height: 20.0),
               Expanded(
                 child: Container(
+                  height: 560,
                   padding: const EdgeInsets.all(20.0),
                   decoration: const BoxDecoration(
                     color: Colors.black,
@@ -93,13 +93,14 @@ class _LoginPageState extends State<LoginPage> {
                             return null;
                           }
                         },
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           labelText: 'Email',
-                          labelStyle: TextStyle(color: Colors.grey),
+                          labelStyle: const TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(color: Colors.grey),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.blue),
                           ),
                         ),
@@ -110,32 +111,48 @@ class _LoginPageState extends State<LoginPage> {
                         controller: password,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'password cannot be Empty';
+                            return 'Password cannot be empty';
                           } else {
                             return null;
                           }
                         },
-                        obscureText: true,
-                        decoration: const InputDecoration(
+                        obscureText: passwordVisibilityProvider.isObscure,
+                        decoration: InputDecoration(
                           labelText: 'Password',
-                          labelStyle: TextStyle(color: Colors.grey),
+                          labelStyle: const TextStyle(color: Colors.grey),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(color: Colors.grey),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.blue),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              passwordVisibilityProvider.isObscure
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () {
+                              passwordVisibilityProvider.toggleVisibility();
+                            },
                           ),
                         ),
                       ),
                       const SizedBox(height: 40.0),
                       SizedBox(
                         width: double.infinity,
-                        height: 40,
+                        height: 42,
                         child: ElevatedButton(
                           onPressed: () {
-                            checking(context);
+                            Auth.login(context, email, password);
                           },
-                          child: const Text('Login'),
+                          child: Text(
+                            'Login',
+                            style: GoogleFonts.lato(
+                                color: kBlack, fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 20.0),
@@ -149,43 +166,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
-
-  void checking(BuildContext context) async {
-    final mail = email.text;
-    final pass = password.text;
-    if (mail == 'sufad' && pass == '12345') {
-      final sharedprefs = await SharedPreferences.getInstance();
-      sharedprefs.setBool('shared_key_value', true);
-      setState(() {
-        isdatamatched = true;
-        Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: (context) {
-          return const BottomNav();
-        }));
-      });
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Username and Password are incorrect'),
-        backgroundColor: Colors.red,
-      ));
-      setState(() {
-        isdatamatched = false;
-      });
-    }
-  }
-
-  Future<void> userlogged() async {
-    final sharedprefs = await SharedPreferences.getInstance();
-    final userloggedin = sharedprefs.getBool('shared_key_value');
-    if (userloggedin == null || userloggedin == false) {
-      const LoginPage();
-    } else {
-      // ignore: use_build_context_synchronously
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) {
-        return const BottomNav();
-      }));
-    }
   }
 }

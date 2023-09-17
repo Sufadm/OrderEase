@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:inexoft/controller/password_visibility_provider.dart';
 import 'package:inexoft/controller/purchase_details.dart';
 import 'package:inexoft/controller/quantity_provider.dart';
 import 'package:inexoft/model/hive.db.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (context) => QuantityProvider(),
           ),
+          ChangeNotifierProvider(
+            create: (context) => PasswordVisibilityProvider(),
+          )
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

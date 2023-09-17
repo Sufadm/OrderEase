@@ -28,22 +28,18 @@ class OrderDetails extends StatelessWidget {
                 height: 45,
               ),
               FutureBuilder(
-                future: Hive.openBox<PurchaseModel>(
-                    'purchase_box'), // Open the Hive box
+                future: Hive.openBox<PurchaseModel>('purchase_box'),
                 builder: (BuildContext context,
                     AsyncSnapshot<Box<PurchaseModel>> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator(); // Loading indicator while opening the box
+                    return const CircularProgressIndicator();
                   }
 
                   if (!snapshot.hasData) {
-                    return const Text(
-                        'No data available.'); // Handle the case where no data is found
+                    return const Text('No data available.');
                   }
-
                   final box = snapshot.data!;
-                  final purchaseList = box.values.toList(); // Retrieve the data
-
+                  final purchaseList = box.values.toList();
                   return Expanded(
                     child: ListView.separated(
                       separatorBuilder: (context, index) => kHeight10,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inexoft/view/screens/login_screen.dart';
 import 'package:inexoft/view/screens/order_details.dart';
 import 'package:inexoft/view/utils/colors.dart';
 import 'package:inexoft/view/utils/sizedbox.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -22,9 +24,8 @@ class ProfilePage extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: const Color.fromARGB(
-                        255, 217, 217, 217), // Set the border color here
-                    width: 1.0, // Set the border width here
+                    color: const Color.fromARGB(255, 217, 217, 217),
+                    width: 1.0,
                   ),
                 ),
                 child: const CircleAvatar(
@@ -61,6 +62,35 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               ListTile(
+                onTap: () => showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                          title: Text(
+                            'Confirmation',
+                            style: GoogleFonts.lato(),
+                          ),
+                          content: Text(
+                            'Do you wish to logout!',
+                            style: GoogleFonts.lato(),
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: Text(
+                                'Cancel',
+                                style: GoogleFonts.lato(),
+                              ),
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  logout(context);
+                                },
+                                child: Text(
+                                  'OK',
+                                  style: GoogleFonts.lato(),
+                                )),
+                          ],
+                        )),
                 leading: const Icon(
                   Icons.logout_outlined,
                   color: kBlack,
@@ -75,5 +105,15 @@ class ProfilePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  logout(BuildContext context) async {
+    final sharedprefs = await SharedPreferences.getInstance();
+    await sharedprefs.clear();
+    // ignore: use_build_context_synchronously
+    return Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) {
+      return const LoginPage();
+    }), (route) => false);
   }
 }
