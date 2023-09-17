@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inexoft/controller/quantity_provider.dart';
+import 'package:inexoft/viewmodel/quantity_provider.dart';
 import 'package:inexoft/view/screens/purchase_page.dart';
 import 'package:inexoft/view/utils/colors.dart';
 import 'package:inexoft/view/utils/sizedbox.dart';

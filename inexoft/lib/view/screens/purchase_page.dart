@@ -126,10 +126,13 @@ class PurchasePage extends StatelessWidget {
                           await Hive.openBox<PurchaseModel>('purchase_box');
                       await box.add(purchaseModel);
                       // ignore: use_build_context_synchronously
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const BottomNav();
-                      }));
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return const BottomNav();
+                        }),
+                        (route) => false,
+                      );
                     },
                     child: const Text(
                       'Place Order',

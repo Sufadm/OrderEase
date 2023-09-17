@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inexoft/controller/quantity_provider.dart';
+import 'package:inexoft/viewmodel/quantity_provider.dart';
 import 'package:inexoft/view/utils/colors.dart';
 import 'package:provider/provider.dart';
 

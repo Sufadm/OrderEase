@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:inexoft/controller/password_visibility_provider.dart';
-import 'package:inexoft/controller/quantity_provider.dart';
+import 'package:inexoft/viewmodel/password_visibility_provider.dart';
+import 'package:inexoft/viewmodel/quantity_provider.dart';
 import 'package:inexoft/model/hive.db.dart';
 import 'package:inexoft/view/screens/login_screen.dart';
 import 'package:provider/provider.dart';

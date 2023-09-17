@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inexoft/controller/bottomnav.dart';
+import 'package:inexoft/viewmodel/bottomnav.dart';
 import 'package:provider/provider.dart';
 
 class BottomNav extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inexoft/controller/login_shared_preferences.dart';
-import 'package:inexoft/controller/password_visibility_provider.dart';
+import 'package:inexoft/viewmodel/login_shared_preferences.dart';
+import 'package:inexoft/viewmodel/password_visibility_provider.dart';
 import 'package:inexoft/view/utils/colors.dart';
 import 'package:provider/provider.dart';
 
@@ -26,6 +26,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenheight = MediaQuery.of(context).size.height;
+
     final passwordVisibilityProvider =
         Provider.of<PasswordVisibilityProvider>(context);
 
@@ -70,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 20.0),
               Container(
-                height: 560,
+                height: screenheight / 1.59,
                 padding: const EdgeInsets.all(20.0),
                 decoration: const BoxDecoration(
                   color: Colors.black,
