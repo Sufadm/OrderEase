@@ -23,17 +23,22 @@ class QuantityInput extends StatelessWidget {
             },
           ),
           Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                color: kBlue,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7),
+              border: Border.all(
+                color: Colors.black, // Set the border color here
+                width: 1.0, // Set the border width here
               ),
-              width: 20,
-              height: 25,
-              child: Center(
-                  child: Text(
+            ),
+            width: 20,
+            height: 25,
+            child: Center(
+              child: Text(
                 quantityProvider.quantity.toString(),
                 style: const TextStyle(fontWeight: FontWeight.bold),
-              ))),
+              ),
+            ),
+          ),
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {

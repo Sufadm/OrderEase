@@ -5,6 +5,7 @@ import 'package:inexoft/controller/purchase_details.dart';
 import 'package:inexoft/controller/quantity_provider.dart';
 import 'package:inexoft/model/hive.db.dart';
 import 'package:inexoft/view/screens/bottomnav.dart';
+import 'package:inexoft/view/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -26,12 +27,12 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
+          title: 'Inexoft Technologies',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const BottomNav(),
+          home: const LoginPage(),
         ));
   }
 }

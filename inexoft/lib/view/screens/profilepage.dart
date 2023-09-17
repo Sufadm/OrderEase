@@ -18,8 +18,16 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(
                 height: 75,
               ),
-              const Center(
-                child: CircleAvatar(
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: const Color.fromARGB(
+                        255, 217, 217, 217), // Set the border color here
+                    width: 1.0, // Set the border width here
+                  ),
+                ),
+                child: const CircleAvatar(
                   backgroundImage: NetworkImage(
                       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiELtUsgMiutWfka9MWnUndduArSK0Qh_sKV--Y8Xs-Sp3YtXqccEqWN6X-U7ANk09DVY&usqp=CAU'),
                   radius: 80,
@@ -31,7 +39,9 @@ class ProfilePage extends StatelessWidget {
                 style:
                     GoogleFonts.acme(fontWeight: FontWeight.bold, fontSize: 19),
               ),
-              kHeight35,
+              const SizedBox(
+                height: 55,
+              ),
               ListTile(
                 onTap: () => Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
@@ -43,7 +53,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 title: Text(
                   'Order Details',
-                  style: GoogleFonts.lato(fontWeight: FontWeight.bold),
+                  style: GoogleFonts.acme(fontWeight: FontWeight.bold),
                 ),
                 trailing: const Icon(
                   Icons.chevron_right,
@@ -57,7 +67,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 title: Text(
                   'Logout',
-                  style: GoogleFonts.lato(fontWeight: FontWeight.bold),
+                  style: GoogleFonts.acme(fontWeight: FontWeight.bold),
                 ),
               ),
             ],
