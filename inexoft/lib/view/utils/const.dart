@@ -1,13 +1,13 @@
 final List<String> productImages = [
-  'https://www.91-cdn.com/hub/wp-content/uploads/2021/10/Realme-GT-Neo-9.jpg?tr=q-100',
-  'https://images.samsung.com/in/smartphones/galaxy-s23-ultra/images/galaxy-s23-ultra-share-image.jpg',
+  'https://www.sathya.in/media/90377/catalog/astral_black.jpg',
+  'https://fdn2.mobgsm.com/vv/pics/samsung/samsung-galaxy-s23-ultra-5g-2.jpg',
   'https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iphone13_hero_09142021_inline.jpg.large.jpg',
   'https://5.imimg.com/data5/SELLER/Default/2022/5/KG/EH/ER/140629936/vivo-v23-5g-mobile.jpg',
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHgpyXTx1qwlbdQxte6iBvLq9jS92hdCrqAg&usqp=CAU',
-  'https://rukminim2.flixcart.com/image/850/1000/kkwwu4w0/mobile/u/i/w/5-4-hq5020m514000-nokia-original-imagy5bqcnefyzdk.jpeg?q=20',
+  'https://m.media-amazon.com/images/I/71h0AwGlUCL.jpg',
   'https://m.media-amazon.com/images/I/71Ap5hKZoJL.jpg',
   'https://rukminim2.flixcart.com/image/850/1000/xif0q/mobile/u/m/b/-original-imagrdefbw6bhbjr.jpeg?q=90',
-  'https://5.imimg.com/data5/SELLER/Default/2022/8/IF/MA/RO/22006657/redmi-9.jpg',
+  'https://m.media-amazon.com/images/I/51A9FQgNxCL.jpg',
 ];
 
 final List<String> productName = [

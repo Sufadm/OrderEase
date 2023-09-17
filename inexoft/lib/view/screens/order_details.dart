@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:inexoft/model/hive.db.dart';
 import 'package:inexoft/view/utils/colors.dart';
 import 'package:inexoft/view/utils/sizedbox.dart';
+import 'package:lottie/lottie.dart';
 
 class OrderDetails extends StatelessWidget {
   const OrderDetails({super.key});
@@ -35,8 +36,14 @@ class OrderDetails extends StatelessWidget {
                     return const CircularProgressIndicator();
                   }
 
-                  if (!snapshot.hasData) {
-                    return const Text('No data available.');
+                  if (!snapshot.hasData ||
+                      snapshot.data == null ||
+                      snapshot.data!.isEmpty) {
+                    return Center(
+                      child: Lottie.network(
+                        'https://lottie.host/77d12cca-195a-4372-9da8-85380b6d8a3f/LFqyLxLC4M.json',
+                      ),
+                    );
                   }
                   final box = snapshot.data!;
                   final purchaseList = box.values.toList();
@@ -46,7 +53,6 @@ class OrderDetails extends StatelessWidget {
                       itemCount: purchaseList.length,
                       itemBuilder: (context, index) {
                         final purchase = purchaseList[index];
-
                         return Card(
                           color: kWhite,
                           child: Container(

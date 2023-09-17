@@ -36,9 +36,9 @@ class ProfilePage extends StatelessWidget {
               ),
               kHeight10,
               Text(
-                'InexSoft',
+                'Inexoft',
                 style:
-                    GoogleFonts.acme(fontWeight: FontWeight.bold, fontSize: 19),
+                    GoogleFonts.acme(fontWeight: FontWeight.bold, fontSize: 22),
               ),
               const SizedBox(
                 height: 55,

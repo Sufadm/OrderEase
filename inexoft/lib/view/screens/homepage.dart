@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
           Container(
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(150.0), // Rounded top-left corner
+                bottomLeft: Radius.circular(150.0),
               ),
               color: Color.fromARGB(255, 24, 1, 128),
             ),

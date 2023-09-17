@@ -69,96 +69,94 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(height: 20.0),
-              Expanded(
-                child: Container(
-                  height: 560,
-                  padding: const EdgeInsets.all(20.0),
-                  decoration: const BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(40.0),
-                      topRight: Radius.circular(40.0),
+              Container(
+                height: 560,
+                padding: const EdgeInsets.all(20.0),
+                decoration: const BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40.0),
+                    topRight: Radius.circular(40.0),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 40.0),
+                    TextFormField(
+                      style: const TextStyle(color: kWhite),
+                      controller: email,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Username cannot be Empty';
+                        } else {
+                          return null;
+                        }
+                      },
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        labelStyle: const TextStyle(color: Colors.grey),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: const BorderSide(color: Colors.grey),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                      ),
                     ),
-                  ),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 40.0),
-                      TextFormField(
-                        style: const TextStyle(color: kWhite),
-                        controller: email,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Username cannot be Empty';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: InputDecoration(
-                          labelText: 'Email',
-                          labelStyle: const TextStyle(color: Colors.grey),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: const BorderSide(color: Colors.grey),
-                          ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blue),
-                          ),
+                    const SizedBox(height: 20.0),
+                    TextFormField(
+                      style: const TextStyle(color: kWhite),
+                      controller: password,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Password cannot be empty';
+                        } else {
+                          return null;
+                        }
+                      },
+                      obscureText: passwordVisibilityProvider.isObscure,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        labelStyle: const TextStyle(color: Colors.grey),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: const BorderSide(color: Colors.grey),
                         ),
-                      ),
-                      const SizedBox(height: 20.0),
-                      TextFormField(
-                        style: const TextStyle(color: kWhite),
-                        controller: password,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Password cannot be empty';
-                          } else {
-                            return null;
-                          }
-                        },
-                        obscureText: passwordVisibilityProvider.isObscure,
-                        decoration: InputDecoration(
-                          labelText: 'Password',
-                          labelStyle: const TextStyle(color: Colors.grey),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: const BorderSide(color: Colors.grey),
-                          ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blue),
-                          ),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              passwordVisibilityProvider.isObscure
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                              color: Colors.grey,
-                            ),
-                            onPressed: () {
-                              passwordVisibilityProvider.toggleVisibility();
-                            },
-                          ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
                         ),
-                      ),
-                      const SizedBox(height: 40.0),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 42,
-                        child: ElevatedButton(
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            passwordVisibilityProvider.isObscure
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: Colors.grey,
+                          ),
                           onPressed: () {
-                            Auth.login(context, email, password);
+                            passwordVisibilityProvider.toggleVisibility();
                           },
-                          child: Text(
-                            'Login',
-                            style: GoogleFonts.lato(
-                                color: kBlack, fontWeight: FontWeight.bold),
-                          ),
                         ),
                       ),
-                      const SizedBox(height: 20.0),
-                      const Center(),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 40.0),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 42,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Auth.login(context, email, password);
+                        },
+                        child: Text(
+                          'Login',
+                          style: GoogleFonts.lato(
+                              color: kBlack, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20.0),
+                    const Center(),
+                  ],
                 ),
               ),
             ],
