@@ -21,7 +21,11 @@ class PurchaseModel extends HiveObject {
   @HiveField(5)
   final String netTotal;
 
+  @HiveField(6)
+  final String customerName;
+
   PurchaseModel({
+    required this.customerName,
     required this.productImage,
     required this.productName,
     required this.productPrice,

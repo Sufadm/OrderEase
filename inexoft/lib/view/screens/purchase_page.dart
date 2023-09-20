@@ -14,13 +14,15 @@ class PurchasePage extends StatelessWidget {
       required this.productquantity,
       required this.productName,
       required this.discounprice,
-      required this.nettotal});
+      required this.nettotal,
+      required this.cstomerName});
   final String productImage;
   final String productName;
   final String productprice;
   final String productquantity;
   final String discounprice;
   final String nettotal;
+  final String cstomerName;
 
   @override
   Widget build(BuildContext context) {
@@ -69,13 +71,19 @@ class PurchasePage extends StatelessWidget {
                       style: GoogleFonts.acme(
                           fontWeight: FontWeight.bold, fontSize: 20),
                     ),
+                    kHeight10,
+                    Text(
+                      cstomerName,
+                      style: GoogleFonts.acme(
+                          fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
                     kHeight5,
                     Text(
                       'Quantity : ${productquantity.toString()}',
                       style: GoogleFonts.acme(fontWeight: FontWeight.w400),
                     ),
                     Text(
-                      'Discount: 10% off',
+                      'Discount: $discounprice',
                       style: GoogleFonts.acme(fontWeight: FontWeight.w400),
                     ),
                     Text(
@@ -121,6 +129,7 @@ class PurchasePage extends StatelessWidget {
                         productQuantity: productquantity.toString(),
                         discountPrice: discounprice,
                         netTotal: nettotal,
+                        customerName: cstomerName,
                       );
                       final box =
                           await Hive.openBox<PurchaseModel>('purchase_box');

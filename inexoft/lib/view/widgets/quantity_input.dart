@@ -11,8 +11,9 @@ class QuantityInput extends StatelessWidget {
     final quantityProvider = Provider.of<QuantityProvider>(context);
 
     return Container(
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(15), color: kWhite),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+      ),
       height: 40,
       child: Row(
         children: [

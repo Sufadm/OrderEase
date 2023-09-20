@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:inexoft/view/screens/customernames.dart';
 import 'package:inexoft/view/screens/login_screen.dart';
 import 'package:inexoft/view/screens/order_details.dart';
 import 'package:inexoft/view/utils/colors.dart';
@@ -46,7 +47,7 @@ class ProfilePage extends StatelessWidget {
               ListTile(
                 onTap: () => Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
-                  return const OrderDetails();
+                  return const CustomerName();
                 })),
                 leading: const Icon(
                   Icons.app_blocking_outlined,

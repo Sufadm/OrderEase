@@ -17,6 +17,7 @@ class PurchaseModelAdapter extends TypeAdapter<PurchaseModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return PurchaseModel(
+      customerName: fields[6] as String,
       productImage: fields[0] as String,
       productName: fields[1] as String,
       productPrice: fields[2] as String,
@@ -29,7 +30,7 @@ class PurchaseModelAdapter extends TypeAdapter<PurchaseModel> {
   @override
   void write(BinaryWriter writer, PurchaseModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.productImage)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class PurchaseModelAdapter extends TypeAdapter<PurchaseModel> {
       ..writeByte(4)
       ..write(obj.discountPrice)
       ..writeByte(5)
-      ..write(obj.netTotal);
+      ..write(obj.netTotal)
+      ..writeByte(6)
+      ..write(obj.customerName);
   }
 
   @override
